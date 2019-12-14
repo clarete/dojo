@@ -1,0 +1,19 @@
+{
+  "name": "dojo00",
+  "version": "0.0.1",
+  "description": "Top-down Recursive Descent Parsing",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jasmine": "^3.5.0",
+    "@types/node": "^12.12.17",
+    "jasmine": "^3.5.0",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
+  },
+  "scripts": {
+    "test": "ts-node $(which jasmine) --config=jasmine.json"
+  },
+  "author": "lincoln@clarete.li",
+  "license": "GPL-3.0-or-later"
+}
