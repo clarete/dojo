@@ -1,0 +1,59 @@
+* Dōjō 00 - Parsing
+
+  We're here to master parsing of machine readable text formats.
+
+  [[/bg/1.png|alt=dojo]]
+
+** How to get yourself setup
+
+   If you haven't done it yet, clone the repository somewhere in your computer using ~git~:
+
+   #+BEGIN_SRC sh
+   git clone git@github.com:clarete/dojo00-parsing.git
+   #+END_SRC
+
+   You can now get into that directory and install the
+   dependencies. You must have ~nodejs~ already installed.
+
+   #+BEGIN_SRC sh
+   npm install
+   #+END_SRC
+
+   Then you're ready to test your setup and get started with the
+   exercises. To iterate, run the tests with:
+
+   #+BEGIN_SRC sh
+   npm test
+   #+END_SRC
+   
+   You must see the following message in the first time you run it:
+
+   ```
+dojo00-parsing $ npm test
+
+> dojo00@0.0.1 test /tmp/dojo00-parsing
+> ts-node $(which jasmine) --config=jasmine.json
+
+
+/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:293
+    return new TSError(diagnosticText, diagnosticCodes)
+           ^
+TSError: ⨯ Unable to compile TypeScript:
+kata1.spec.ts:1:42 - error TS2307: Cannot find module './kata1'.
+
+1 import { BaseParser, ParsingError } from "./kata1";
+                                           ~~~~~~~~~
+
+    at createTSError (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:293:12)
+    at reportTSError (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:297:19)
+    at getOutput (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:399:34)
+    at Object.compile (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:457:32)
+    at Module.m._compile (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:536:43)
+    at Module._extensions..js (internal/modules/cjs/loader.js:827:10)
+    at Object.require.extensions.(anonymous function) [as .ts] (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:539:12)
+    at Module.load (internal/modules/cjs/loader.js:685:32)
+    at Function.Module._load (internal/modules/cjs/loader.js:620:12)
+    at Module.require (internal/modules/cjs/loader.js:723:19)
+npm ERR! Test failed.  See above for more details.
+
+   ```
