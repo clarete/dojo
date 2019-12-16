@@ -2,7 +2,7 @@
 
   We're here to master parsing of machine readable text formats.
 
-  [[/bg/1.png|alt=dojo]]
+  [[bg/1.png]]
 
 ** How to get yourself setup
 
@@ -28,7 +28,7 @@
    
    You must see the following message in the first time you run it:
 
-   ```
+   #+BEGIN_SRC text
 dojo00-parsing $ npm test
 
 > dojo00@0.0.1 test /tmp/dojo00-parsing
@@ -56,4 +56,4 @@ kata1.spec.ts:1:42 - error TS2307: Cannot find module './kata1'.
     at Module.require (internal/modules/cjs/loader.js:723:19)
 npm ERR! Test failed.  See above for more details.
 
-   ```
+   #+END_SRC
