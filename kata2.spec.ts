@@ -27,7 +27,7 @@ describe("#2 Kata - Use Expressions to implement primitives", () => {
     });
 
     it("should parse hex-decimals", () => {
-      // Given a parser with some input containing integers
+      // Given a parser with some input containing a hex number
       const parser = new PrimitiveParser();
       parser.setInput("0xFF");
       // When the parser tries to consume a decimal number with
@@ -35,6 +35,30 @@ describe("#2 Kata - Use Expressions to implement primitives", () => {
       const output = parser.parseHexDecimal();
       // Then it should have parsed the whole input
       expect(output).toEqual(255);
+    });
+
+    it("should parse floating point numbers", () => {
+      // Given a parser with some input containing a float number
+      const parser = new PrimitiveParser();
+      parser.setInput("0.55");
+      // When the parser tries to consume a decimal number with
+      // multiple digits
+      const output = parser.parseFloat();
+      // Then it should have parsed the whole input
+      expect(output).toEqual(0.55);
+    });
+
+    it("should parse all supported number types", () => {
+      const parser = new PrimitiveParser();
+      // Decimals
+      parser.setInput("55");
+      expect(parser.parseNumber()).toBe(55);
+      // Hex decimals
+      parser.setInput("0xf");
+      expect(parser.parseNumber()).toBe(15);
+      // Floats
+      parser.setInput("0.55");
+      expect(parser.parseNumber()).toBe(0.55);
     });
   });
 });
