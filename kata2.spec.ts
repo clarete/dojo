@@ -37,6 +37,17 @@ describe("#2 Kata - Use Expressions to implement primitives", () => {
       expect(output).toEqual(255);
     });
 
+    it("should parse binary numbers", () => {
+      // Given a parser with some input containing a binary number
+      const parser = new PrimitiveParser();
+      parser.setInput("0b101010");
+      // When the parser tries to consume a decimal number with
+      // multiple digits
+      const output = parser.parseBinary();
+      // Then it should have parsed the whole input
+      expect(output).toEqual(42);
+    });
+
     it("should parse floating point numbers", () => {
       // Given a parser with some input containing a float number
       const parser = new PrimitiveParser();
@@ -56,6 +67,9 @@ describe("#2 Kata - Use Expressions to implement primitives", () => {
       // Hex decimals
       parser.setInput("0xf");
       expect(parser.parseNumber()).toBe(15);
+      // Binary numbers
+      parser.setInput("0b101010");
+      expect(parser.parseNumber()).toBe(42);
       // Floats
       parser.setInput("0.55");
       expect(parser.parseNumber()).toBe(0.55);
