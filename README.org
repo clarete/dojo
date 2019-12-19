@@ -43,10 +43,10 @@ dojo $ npm test
     return new TSError(diagnosticText, diagnosticCodes)
            ^
 TSError: ⨯ Unable to compile TypeScript:
-kata1.spec.ts:1:42 - error TS2307: Cannot find module './kata1'.
+kata1.spec.ts:1:42 - error TS2307: Cannot find module './api'.
 
-1 import { BaseParser, ParsingError } from "./kata1";
-                                           ~~~~~~~~~
+1 import { BaseParser, ParsingError } from "./api";
+                                           ~~~~~~~
 
     at createTSError (/tmp/dojo/node_modules/ts-node/src/index.ts:293:12)
     at reportTSError (/tmp/dojo/node_modules/ts-node/src/index.ts:297:19)
@@ -59,7 +59,6 @@ kata1.spec.ts:1:42 - error TS2307: Cannot find module './kata1'.
     at Function.Module._load (internal/modules/cjs/loader.js:620:12)
     at Module.require (internal/modules/cjs/loader.js:723:19)
 npm ERR! Test failed.  See above for more details.
-
    #+END_SRC
 
    Although that's an error, right now it means success. You got as
