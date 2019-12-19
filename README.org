@@ -65,15 +65,16 @@ npm ERR! Test failed.  See above for more details.
    Although that's an error, right now it means success. You got as
    far as you were meant to be in your journey. If you squint a bit,
    you can see that the error happened because ~typescript~ didn't
-   find the that implements the API required by the test. That's
-   right, it's on you to make this test and all the others pass.
+   find the module that implements the API required by the test.
+   That's right, it's on you to make this test and all the others
+   pass!
 
-   Although just looking through the tests will get you pretty far --
-   especially in the beginning -- at some point, things might get
+   Although just looking through the tests will get you pretty far,
+   especially in the beginning, at some point, things might get
    frustrating. If that ever happens or if you just prefer reading a
    bit about the abstract side before coding or even looking through
    the tests, continue the reading to get more context about what's
-   going on with all those tests and what you will have to build.
+   going on with all those tests and what you will build.
 
 ** Parsing
 
@@ -81,18 +82,18 @@ npm ERR! Test failed.  See above for more details.
    type of file to declare our programs: Plain Text. That's the most
    powerful format we've ever created in computers. With a Plain Text
    file you can write a program that will be able to interpret
-   whatever you wrote in whatever way you want (and Computer Science
-   allows :D).
+   whatever you wrote in whatever way your parser works.
 
-   Plain Text is as powerful as the parsers we can write to interpret
-   that. And it has a *very important property* it's also readable by
-   lil us humans. That's why this is the most perfect medium to
-   *declare* our programs.
+   Plain Text is as powerful as the parser we can write to interpret a
+   plain text file. This is why it's used as the fabric of the
+   programs we write, because both us lil humans and machines can
+   interpret them.
 
-   We're here to master parsing of machine readable text formats.
-   It's rather easier to be parsed than natural language and although
-   natural language is... hmmm... more natural to us humans, it's
-   different to tell computers how to do it. It's way more involved.
+   So we're going to master one way of parsing machine readable text
+   formats.  Machine readable formats are rather easier to be parsed
+   than natural language and although natural language
+   is... hmmm... more natural to us humans, it's different to tell
+   computers how to do it. It's way more involved.
 
    We're going to be writing a top down recursive parser. It means
    that 1. It reads the text from left to right, from top to bottom
@@ -116,4 +117,15 @@ npm ERR! Test failed.  See above for more details.
     The input, written to the parser instance only through
     ~BaseParser.setInput~, isn't ever mutated during parsing.
 
-    All the other methods functions required by the first kata
+    The method ~BaseParser.getCurrent()~ will return the character at
+    the position the ~cursor~ is in. And as a reminder, string
+    indexing starts from zero in ~typescript~ so the ~cursor~ must
+    also start from zero, thus ~getCurrent()~ will return the first
+    character of the ~input~ if the ~cursor~ hasn't moved yet.
+
+    The method ~BaseParser.next()~ moves the cursor to the next
+    position in the input and must fail with a ~ParsingErros~ if the
+    cursor has reached the end of the input.
+
+    All the other methods functions required by the first kata must
+    only either advance the cursor, match an expected string or fail.
