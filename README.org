@@ -1,15 +1,19 @@
-* Dōjō 00 - Parsing
+* Dōjō
 
-  We're here to master parsing of machine readable text formats.
+** Goals and method
 
-  [[bg/1.png]]
+   We're here to master programming starting by mastering programming
+   languages. This repository contains a set of tests that describe a
+   little programming language.
+
+   [[bg/1.png]]
 
 ** How to get yourself setup
 
    If you haven't done it yet, clone the repository somewhere in your computer using ~git~:
 
    #+BEGIN_SRC sh
-   git clone git@github.com:clarete/dojo00-parsing.git
+   git clone git@github.com:clarete/dojo.git
    #+END_SRC
 
    You can now get into that directory and install the
@@ -29,13 +33,13 @@
    You must see the following message in the first time you run it:
 
    #+BEGIN_SRC text
-dojo00-parsing $ npm test
+dojo $ npm test
 
-> dojo00@0.0.1 test /tmp/dojo00-parsing
+> dojo@0.0.1 test /tmp/dojo
 > ts-node $(which jasmine) --config=jasmine.json
 
 
-/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:293
+/tmp/dojo/node_modules/ts-node/src/index.ts:293
     return new TSError(diagnosticText, diagnosticCodes)
            ^
 TSError: ⨯ Unable to compile TypeScript:
@@ -44,16 +48,72 @@ kata1.spec.ts:1:42 - error TS2307: Cannot find module './kata1'.
 1 import { BaseParser, ParsingError } from "./kata1";
                                            ~~~~~~~~~
 
-    at createTSError (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:293:12)
-    at reportTSError (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:297:19)
-    at getOutput (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:399:34)
-    at Object.compile (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:457:32)
-    at Module.m._compile (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:536:43)
+    at createTSError (/tmp/dojo/node_modules/ts-node/src/index.ts:293:12)
+    at reportTSError (/tmp/dojo/node_modules/ts-node/src/index.ts:297:19)
+    at getOutput (/tmp/dojo/node_modules/ts-node/src/index.ts:399:34)
+    at Object.compile (/tmp/dojo/node_modules/ts-node/src/index.ts:457:32)
+    at Module.m._compile (/tmp/dojo/node_modules/ts-node/src/index.ts:536:43)
     at Module._extensions..js (internal/modules/cjs/loader.js:827:10)
-    at Object.require.extensions.(anonymous function) [as .ts] (/tmp/dojo00-parsing/node_modules/ts-node/src/index.ts:539:12)
+    at Object.require.extensions.(anonymous function) [as .ts] (/tmp/dojo/node_modules/ts-node/src/index.ts:539:12)
     at Module.load (internal/modules/cjs/loader.js:685:32)
     at Function.Module._load (internal/modules/cjs/loader.js:620:12)
     at Module.require (internal/modules/cjs/loader.js:723:19)
 npm ERR! Test failed.  See above for more details.
 
    #+END_SRC
+
+   Although that's an error, right now it means success. You got as
+   far as you were meant to be in your journey. If you squint a bit,
+   you can see that the error happened because ~typescript~ didn't
+   find the that implements the API required by the test. That's
+   right, it's on you to make this test and all the others pass.
+
+   Although just looking through the tests will get you pretty far --
+   especially in the beginning -- at some point, things might get
+   frustrating. If that ever happens or if you just prefer reading a
+   bit about the abstract side before coding or even looking through
+   the tests, continue the reading to get more context about what's
+   going on with all those tests and what you will have to build.
+
+** Parsing
+
+   We usually say we "write software" because we use the most basic
+   type of file to declare our programs: Plain Text. That's the most
+   powerful format we've ever created in computers. With a Plain Text
+   file you can write a program that will be able to interpret
+   whatever you wrote in whatever way you want (and Computer Science
+   allows :D).
+
+   Plain Text is as powerful as the parsers we can write to interpret
+   that. And it has a *very important property* it's also readable by
+   lil us humans. That's why this is the most perfect medium to
+   *declare* our programs.
+
+   We're here to master parsing of machine readable text formats.
+   It's rather easier to be parsed than natural language and although
+   natural language is... hmmm... more natural to us humans, it's
+   different to tell computers how to do it. It's way more involved.
+
+   We're going to be writing a top down recursive parser. It means
+   that 1. It reads the text from left to right, from top to bottom
+   and also that it's recursive, so it's powerful enough to parse
+   recursive structures (parse the definition of a list that can
+   contain other lists for example).
+
+   Our parser will aim to parse things at linear time, which means
+   that it must perform the same amount of operations for each
+   character to be ~O(N)~.
+
+*** Kata #1
+
+    This first exercise aims to teach us the basic about parsing in
+    general. It won't involve recursion just yet. The exercise
+    requires the implementation of a class called ~BaseParser~. The
+    class will have to provide methods to control how far the parser
+    has moved within the input string. The test requires explicitly
+    the ~BaseParser~ to provide the property ~cursor~.
+
+    The input, written to the parser instance only through
+    ~BaseParser.setInput~, isn't ever mutated during parsing.
+
+    All the other methods functions required by the first kata

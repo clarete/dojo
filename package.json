@@ -1,7 +1,7 @@
 {
-  "name": "dojo00",
+  "name": "dojo",
   "version": "0.0.1",
-  "description": "Top-down Recursive Descent Parsing",
+  "description": "Top-down Recursive Descent Parsing Dojo",
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
