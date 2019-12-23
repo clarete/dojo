@@ -3,7 +3,32 @@ import { BaseParser, ParsingError } from "./api";
 
 describe("#2 Kata - Matching Expressions", () => {
   describe("zeroOrMore", () => {
+    it("should return nothing when it doesn't match anything", () => {
+      // Given a base parser with some input
+      const parser = new BaseParser();
+      parser.setInput("aaab");
+      // When trying to match `c'
+      const output = parser.zeroOrMore(() => parser.expect('c'));
+      // Then it should parse nothing
+      expect(output).toEqual([]);
+      // And then expect that the cursor didn't move
+      expect(parser.cursor).toBe(0);
+    });
+
     it("should capture as much of the input as possible", () => {
+      // Given a base parser with some input
+      const parser = new BaseParser();
+      parser.setInput("aaab");
+      // When trying to parse `a'
+      const output = parser.zeroOrMore(() => parser.expect('a'));
+      // Then it should parse all the first `a's
+      expect(output).toEqual(['a', 'a', 'a']);
+      // And then the cursor should be right after the last match
+      expect(parser.cursor).toBe(3);
+      expect(parser.getCurrent()).toBe('b');
+    });
+
+    it("should work with any matcher", () => {
       // Given a base parser with some input
       const parser = new BaseParser();
       parser.setInput("1234abcd");
@@ -16,8 +41,7 @@ describe("#2 Kata - Matching Expressions", () => {
           parser.next();
           return current;
         }
-        // Stop the loop at the end of the sequence of integers
-        parser.error('Not Int');
+        throw new ParsingError('Not Int');
       };
       // When zero or more integers are consumed
       const output = parser.zeroOrMore(integers);
