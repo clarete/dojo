@@ -71,4 +71,13 @@ describe("#1 Kata - Move the cursor forward on matching", () => {
     expect(parser.cursor).toBe(6);
     expect(parser.getCurrent()).toBe("t");
   });
+
+  it("should raise an exception if it doesn't match in the middle", () => {
+    // Given a base parser with some input and a cursor
+    const parser = new BaseParser();
+    parser.setInput("sweeeet");
+    // When a string is expected
+    expect(() => parser.expectString("sweeeef"))
+      .toThrow(new ParsingError("Expected 'f', got 't'"));
+  });
 });
