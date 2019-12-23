@@ -77,15 +77,24 @@ describe("#2 Kata - Matching Expressions", () => {
   });
 
   describe("oneOrMore", () => {
-  });
+    it("should raise an error if it doesn't match anything", () => {
+      // Given a new base parser with some input
+      const parser = new BaseParser();
+      parser.setInput("bbbb");
+      // When we try to parse the above input; Then it should throw an
+      // error
+      expect(() => parser.oneOrMore(() => parser.expect("a")))
+        .toThrow(new ParsingError("Expected 'a', got 'b'"));
+    });
 
-  describe("optional", () => {
+    it("should parse as many item out of the input as possible", () => {
+      // Given a new base parser with some input
+      const parser = new BaseParser();
+      parser.setInput("aaab");
+      // When we try to parse the above input
+      const output = parser.oneOrMore(() => parser.expect("a"));
+      // Then it should consume all the `a's in the input
+      expect(output).toEqual(['a', 'a', 'a']);
+    });
   });
-
-  describe("not", () => {
-  });
-
-  describe("and", () => {
-  });
-
 });
