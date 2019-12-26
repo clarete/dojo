@@ -1,11 +1,11 @@
-import { ParsingError, PrimitiveParser } from "./api";
+import { ParsingError, ValueParser } from "./api";
 
 
-describe("#3 Kata - Use Expressions to implement primitives", () => {
+describe("#3 Kata - Use Expressions to implement parsers", () => {
   describe("Numbers", () => {
     it("should parse a digit", () => {
       // Given a parser with some input containing integers
-      const parser = new PrimitiveParser();
+      const parser = new ValueParser();
       parser.setInput("1234");
       // When the parser tries to consume a single digit
       const output = parser.parseDigit();
@@ -16,7 +16,7 @@ describe("#3 Kata - Use Expressions to implement primitives", () => {
 
     it("should parse decimals", () => {
       // Given a parser with some input containing integers
-      const parser = new PrimitiveParser();
+      const parser = new ValueParser();
       parser.setInput("1234");
       // When the parser tries to consume a decimal number with
       // multiple digits
@@ -27,7 +27,7 @@ describe("#3 Kata - Use Expressions to implement primitives", () => {
 
     it("should parse hex-decimals", () => {
       // Given a parser with some input containing a hex number
-      const parser = new PrimitiveParser();
+      const parser = new ValueParser();
       parser.setInput("0xFF");
       // When the parser tries to consume a decimal number with
       // multiple digits
@@ -38,7 +38,7 @@ describe("#3 Kata - Use Expressions to implement primitives", () => {
 
     it("should parse binary numbers", () => {
       // Given a parser with some input containing a binary number
-      const parser = new PrimitiveParser();
+      const parser = new ValueParser();
       parser.setInput("0b101010");
       // When the parser tries to consume a decimal number with
       // multiple digits
@@ -49,7 +49,7 @@ describe("#3 Kata - Use Expressions to implement primitives", () => {
 
     it("should parse floating point numbers", () => {
       // Given a parser with some input containing a float number
-      const parser = new PrimitiveParser();
+      const parser = new ValueParser();
       parser.setInput("0.55");
       // When the parser tries to consume a decimal number with
       // multiple digits
@@ -59,7 +59,7 @@ describe("#3 Kata - Use Expressions to implement primitives", () => {
     });
 
     it("should parse all supported number types", () => {
-      const parser = new PrimitiveParser();
+      const parser = new ValueParser();
       // Decimals
       parser.setInput("55");
       expect(parser.parseNumber()).toBe(55);
