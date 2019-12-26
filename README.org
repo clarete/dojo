@@ -168,9 +168,40 @@ npm ERR! Test failed.  See above for more details.
      tools we built so far and other parsing functions for composing
      more complex parsers.
 
+     Pay very close attention to the little test function
+     ~expectInteger~ within the test *"should work with any matching
+     function"*. It is an example of how a matching function can be
+     tailored from the most basic primitives ~getCurrent()~ and
+     ~next()~.  It also shows where the parsing error has to be
+     emitted on the custom matching functions
+
 *** Kata #3 - Use Expressions to implement parsers
 
-    Most of the tooling needed for building our parser was done in the
-    previous two exercises.  This third exercise will teach you how to
-    use the tools you just built to parse pretty much any machine
-    readable format.
+    Most of the tooling needed for building our parser is now
+    finished.  This third exercise will teach you how to use the
+    tooling you just built to parse a wide variety of readable
+    formats.
+
+    The first thing we're going to parse is numbers! If you're
+    familiar with [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt][parseInt]], we're going to implement a lightweight
+    version of it.  We'll take a string and return the number
+    contained in that string.
+
+    Let's start pretty small though.  Let's parse a single decimal
+    digit.  Although we've done something very similar in the last
+    test of the second kata (remember ~expectInteger~?), this time
+    we'll try to use the functions we wrote instead of a regular
+    expression to match each digit.
+
+    To check if a character is a valid decimal digit, one just needs
+    to compare that character to characters from ~0~ to ~9~.  We can
+    use the combination of two methods we've built to implement this.
+    We just need a list of teeny little parsers that ~expect()~ a
+    single character and then we can feed that list into the ~or~
+    method. That gives you ~parseDigit()~!
+
+    For the next tests, you can follow the same logic of composing
+    matching functions to be able to create more complex parsers.
+
+    The best advice for implementing ~parseDecimal()~ is to use
+    ~parseDigit~ ~oneOrMore~ times!
