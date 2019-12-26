@@ -155,6 +155,12 @@ npm ERR! Test failed.  See above for more details.
      just a syntactic sugar for calling a parsing function once and
      then calling it again with ~zeroOrMore~.
 
+     Another very important concept that shows up in this kata is the
+     idea of writing small parsing functions that work from where the
+     cursor is located onward.  Each parsing function will use these
+     tools we built so far and other parsing functions for composing
+     more complex parsers.
+
 *** Kata #3 - Use Expressions to implement parsers
 
     Most of the tooling needed for building our parser was done in the
