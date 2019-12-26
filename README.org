@@ -100,31 +100,64 @@ npm ERR! Test failed.  See above for more details.
    recursive structures (parse the definition of a list that can
    contain other lists for example).
 
-   Our parser will aim to parse things at linear time, which means
-   that it must perform the same amount of operations for each
-   character to be ~O(N)~.
+*** Kata #1 - Move the cursor forward on matching
 
-*** Kata #1
-
-    This first exercise aims to teach us the basic about parsing in
-    general. It won't involve recursion just yet. The exercise
-    requires the implementation of a class called ~BaseParser~. The
-    class will have to provide methods to control how far the parser
-    has moved within the input string. The test requires explicitly
-    the ~BaseParser~ to provide the property ~cursor~.
+    This first exercise aims to teach us the basics about parsing. It
+    won't involve recursion just yet.  The exercise requires the
+    implementation of a class called ~BaseParser~. The class will have
+    to provide methods to control how far the parser has moved within
+    the input string. The test requires explicitly the ~BaseParser~ to
+    provide the property ~cursor~.
 
     The input, written to the parser instance only through
-    ~BaseParser.setInput~, isn't ever mutated during parsing.
+    ~BaseParser#setInput~, isn't ever mutated during parsing.
 
-    The method ~BaseParser.getCurrent()~ will return the character at
+    The method ~BaseParser#getCurrent()~ will return the character at
     the position the ~cursor~ is in. And as a reminder, string
     indexing starts from zero in ~typescript~ so the ~cursor~ must
     also start from zero, thus ~getCurrent()~ will return the first
     character of the ~input~ if the ~cursor~ hasn't moved yet.
 
-    The method ~BaseParser.next()~ moves the cursor to the next
+    The method ~BaseParser#next()~ moves the cursor to the next
     position in the input and must fail with a ~ParsingErros~ if the
     cursor has reached the end of the input.
 
-    All the other methods functions required by the first kata must
-    only either advance the cursor, match an expected string or fail.
+    The method ~BaseParser#expect(expected)~ must either advance the
+    cursor if the ~expected~ character is under the cursor, or fail
+    with a parsing error. And finally ~BaseParser#expectString(e)~
+    should take a string and ~expect()~ each character of the input
+    string ~e~ to be matched.
+
+*** Kata #2 - Matching Expressions
+
+    The first Kata implements enough tooling to help our parser move
+    the cursor forward if it matches a string.  It also introduces the
+    ~ParsingError~ exception that is raised whenever an expected input
+    isn't matched.  This second exercise will teach you how to build
+    two little tools that will allow you to compose more involved
+    parsers much more simply.
+
+     1. The method ~BaseParser#zeroOrMore~ will receive a parsing
+        function and try to execute it indefinitely until a
+        ~ParsingError~ happens. Then, ~zeroOrMore~ returns all the
+        successful outputs of the matching function.  ~zeroOrMore~
+        never fails, even if the matching function never succeeds.
+        Instead, it just returns an empty array.
+
+     2. The method ~BaseParser#or~ will receive a list of parsing
+        functions and try each of them and return the result of the
+        very first successful one.  The ~or~ method must reset the
+        cursor to where it was before each failed attempt. If no
+        alternatives work, the ~or~ method will then fail with a
+        ~ParsingError~.
+
+     The second kata also introduces ~BaseParser#oneOrMore~ but it is
+     just a syntactic sugar for calling a parsing function once and
+     then calling it again with ~zeroOrMore~.
+
+*** Kata #3 - Use Expressions to implement parsers
+
+    Most of the tooling needed for building our parser was done in the
+    previous two exercises.  This third exercise will teach you how to
+    use the tools you just built to parse pretty much any machine
+    readable format.
