@@ -2,7 +2,7 @@ import { BaseParser, ParsingError } from "./api";
 
 describe("#2 Kata - Matching Expressions", () => {
     describe("zeroOrMore", () => {
-        xit("should return nothing when it doesn't match anything", () => {
+        it("should return nothing when it doesn't match anything", () => {
             // Given a base parser with some input
             const parser = new BaseParser();
             parser.setInput("aaab");

@@ -43,4 +43,44 @@ export class BaseParser {
         this.next();
         return absolute;
     };
+    zeroOrMore = (hook: () => string): Array<string> => {
+        const { expect } = this;
+        const umbrella = [];
+        for (; ;) {
+            try {
+                hook.apply(this);
+                umbrella.push(this.getCurrent());
+            } catch (e) {
+                break;
+            }
+        }
+        return Array.from(umbrella).filter((c) => c.length > 0);
+    };
+    oneOrMore = (hook: () => string): Array<string> => {
+        return [];
+    };
+    or = (callbacks: Array<() => string>): string => {
+        return ``;
+    };
+}
+
+export class ValueParser extends BaseParser {
+    parseBinary = (): number => {
+        return 0;
+    };
+    parseDecimal = (): number => {
+        return 0;
+    };
+    parseDigit = (): string => {
+        return `0`;
+    };
+    parseFloat = (): number => {
+        return 0;
+    };
+    parseHexDecimal = (): number => {
+        return 0;
+    };
+    parseNumber = (): number => {
+        return 0;
+    };
 }

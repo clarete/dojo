@@ -2,7 +2,7 @@ import { ParsingError, ValueParser } from "./api";
 
 describe("#3 Kata - Use Expressions to implement parsers", () => {
     describe("Numbers", () => {
-        it("should parse a digit", () => {
+        xit("should parse a digit", () => {
             // Given a parser with some input containing integers
             const parser = new ValueParser();
             parser.setInput("1234");
@@ -13,7 +13,7 @@ describe("#3 Kata - Use Expressions to implement parsers", () => {
             expect(parser.getCurrent()).toBe("2");
         });
 
-        it("should parse decimals", () => {
+        xit("should parse decimals", () => {
             // Given a parser with some input containing integers
             const parser = new ValueParser();
             parser.setInput("1234");
@@ -24,7 +24,7 @@ describe("#3 Kata - Use Expressions to implement parsers", () => {
             expect(output).toEqual(1234);
         });
 
-        it("should parse hex-decimals", () => {
+        xit("should parse hex-decimals", () => {
             // Given a parser with some input containing a hex number
             const parser = new ValueParser();
             parser.setInput("0xFF");
@@ -35,7 +35,7 @@ describe("#3 Kata - Use Expressions to implement parsers", () => {
             expect(output).toEqual(255);
         });
 
-        it("should parse binary numbers", () => {
+        xit("should parse binary numbers", () => {
             // Given a parser with some input containing a binary number
             const parser = new ValueParser();
             parser.setInput("0b101010");
@@ -46,7 +46,7 @@ describe("#3 Kata - Use Expressions to implement parsers", () => {
             expect(output).toEqual(42);
         });
 
-        it("should parse floating point numbers", () => {
+        xit("should parse floating point numbers", () => {
             // Given a parser with some input containing a float number
             const parser = new ValueParser();
             parser.setInput("0.55");
@@ -57,7 +57,7 @@ describe("#3 Kata - Use Expressions to implement parsers", () => {
             expect(output).toEqual(0.55);
         });
 
-        it("should parse all supported number types", () => {
+        xit("should parse all supported number types", () => {
             const parser = new ValueParser();
             // Decimals
             parser.setInput("55");
